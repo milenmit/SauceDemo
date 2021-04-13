@@ -1,3 +1,4 @@
+/*
 package ProductsTest;
 
 import org.testng.annotations.AfterMethod;
@@ -29,3 +30,4 @@ public class CheckNumberOfProductsTest {
 
     }
 }
+*/
