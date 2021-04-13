@@ -9,7 +9,7 @@ pipeline {
         }
          stage('Spinning up dockers') {
                     steps {
-                        sh 'docker-compose up -d'
+                        sh 'docker-compose -f docker-compose-v3-video.yml up -d'
                     }
                 }
            stage('Build') {
@@ -17,16 +17,19 @@ pipeline {
                 sh 'mvn clean'
             }
         }
+       
         stage('Run test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test -DbrowserName=chrome'
+            
             }
 
        }
      stage('stop and remove dockers') {
             steps {
-                sh 'docker stop $(docker ps -a q)'
-                sh 'docker rm $(docker ps -a q)'
+                sh 'docker stop $(docker ps -a -q)'
+                sh 'docker rm $(docker ps -a -q)'
                         }
     }
+}
 }
